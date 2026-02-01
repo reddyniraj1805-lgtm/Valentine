@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will you be my Valentine?</title>
+<style>
+body {
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #fce4ec; /* Light pink background */
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+margin: 0;
+overflow: hidden;
+}
+
+.card {
+background: white;
+padding: 40px;
+border-radius: 20px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+text-align: center;
+max-width: 400px;
+width: 90%;
+position: relative;
+}
+
+.icon {
+font-size: 50px;
+margin-bottom: 20px;
+}
+
+h1 {
+color: #000;
+font-size: 24px;
+margin-bottom: 30px;
+font-weight: 700;
+}
+
+.btn-container {
+display: flex;
+justify-content: center;
+gap: 20px;
+}
+
+button {
+padding: 12px 25px;
+font-size: 16px;
+border: none;
+border-radius: 20px;
+cursor: pointer;
+font-weight: bold;
+transition: transform 0.2s;
+}
+
+#yes {
+background-color: #e91e63;
+color: white;
+}
+
+#no {
+background-color: #e0e0e0;
+color: #757575;
+position: absolute; /* Needed for the dodging effect */
+}
+
+.hint {
+margin-top: 30px;
+font-size: 12px;
+color: #999;
+}
+
+#success-msg {
+display: none;
+}
+
+img {
+width: 100%;
+border-radius: 10px;
+margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="card" id="main-card">
+<div class="icon">🐱💕</div>
+<h1>Ritu will you be my valentine 😘💝 ???? </h1>
+
+<div class="btn-container">
+<button id="yes">Yes</button>
+<button id="no">No</button>
+</div>
+
+<p class="hint">"No" seems a bit shy 😈</p>
+
+<div id="success-msg">
+<h2 style="color: #e91e63;">Yay! You had no choice! ❤️</h2>
+<img src="https://media.giphy.com/media/I0MYt5jPR6QX5pnqM/giphy.gif" alt="Happy Cat">
+</div>
+</div>
+
+<script>
+const noButton = document.getElementById("no");
+const yesButton = document.getElementById("yes");
+const successMsg = document.getElementById("success-msg");
+const card = document.getElementById("main-card");
+
+// The dodging logic
+noButton.addEventListener("mouseover", () => {
+const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+
+noButton.style.position = "fixed";
+noButton.style.left = x + "px";
+noButton.style.top = y + "px";
+});
+
+// The "Yes" logic
+yesButton.addEventListener("click", () => {
+// Hide everything except the success message
+document.querySelector('.icon').style.display = "none";
+document.querySelector('h1').style.display = "none";
+document.querySelector('.btn-container').style.display = "none";
+document.querySelector('.hint').style.display = "none";
+successMsg.style.display = "block";
+});
+</script>
+</body>
+</html>
