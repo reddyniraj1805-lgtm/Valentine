@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,9 +23,13 @@ padding: 40px;
 border-radius: 20px;
 box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 text-align: center;
-max-width: 400px;
+max-width: 450px;
 width: 90%;
 position: relative;
+min-height: 300px;
+display: flex;
+flex-direction: column;
+justify-content: center;
 }
 
 .icon {
@@ -34,22 +39,22 @@ margin-bottom: 20px;
 
 h1 {
 color: #000;
-font-size: 24px;
+font-size: 22px;
 margin-bottom: 30px;
 font-weight: 700;
+line-height: 1.4;
 }
 
-/* This container keeps the Yes button in place */
 .btn-container {
 display: flex;
 justify-content: center;
 align-items: center;
 gap: 20px;
-min-height: 50px;
+margin-top: 10px;
 }
 
 button {
-padding: 12px 25px;
+padding: 12px 28px;
 font-size: 16px;
 border: none;
 border-radius: 20px;
@@ -59,15 +64,15 @@ transition: 0.1s;
 }
 
 #yes {
-background-color: #e91e63; /* Bright Pink */
+background-color: #e91e63;
 color: white;
-z-index: 1;
+position: relative;
 }
 
 #no {
 background-color: #e0e0e0;
 color: #757575;
-z-index: 2;
+position: relative; /* Starts relative, becomes fixed on hover */
 }
 
 .hint {
@@ -78,12 +83,20 @@ color: #999;
 
 #success-msg {
 display: none;
+line-height: 1.6;
 }
 
-img {
-width: 100%;
-border-radius: 10px;
-margin-top: 20px;
+.sweet-text {
+color: #e91e63;
+font-size: 1.1em;
+font-style: italic;
+margin-bottom: 15px;
+}
+
+.funny-text {
+color: #333;
+font-size: 1.2em;
+font-weight: bold;
 }
 </style>
 </head>
@@ -103,8 +116,8 @@ margin-top: 20px;
 </div>
 
 <div id="success-msg">
-<h2 style="color: #e91e63;">Yay! You had no choice! ❤️</h2>
-<img src="https://media.giphy.com/media/I0MYt5jPR6QX5pnqM/giphy.gif" alt="Happy Cat">
+<p class="sweet-text">Every part of me leans toward you. Your love has wrapped itself around my heart, and I never want to let go.</p>
+<p class="funny-text">I want to eat the Samosa’s and Paratha’s more frequently 💝😘🥹</p>
 </div>
 </div>
 
@@ -116,7 +129,6 @@ const content = document.getElementById("content");
 
 // The dodging logic
 noButton.addEventListener("mouseover", () => {
-// Move the button to a random position on the screen
 const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
 const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
 
@@ -125,7 +137,7 @@ noButton.style.left = x + "px";
 noButton.style.top = y + "px";
 });
 
-// When she finally clicks Yes
+// The "Yes" click logic
 yesButton.addEventListener("click", () => {
 content.style.display = "none";
 successMsg.style.display = "block";
